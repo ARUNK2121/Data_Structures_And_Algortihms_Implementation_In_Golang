@@ -1,4 +1,4 @@
-package main
+package linkedlist
 
 import (
 	"errors"
@@ -9,50 +9,17 @@ const (
 	ListEmptyError = "list is empty"
 )
 
+// structure represents the linked list
 type List struct {
 	Head *Node //head of linked list
 	Tail *Node //tail of linked list
 }
 
+// structure represents the nodes in list
 type Node struct {
 	Data int   //actual data inside the node
 	Next *Node //reference to the next node
 	Prev *Node //reference to the previous node
-}
-
-func main() {
-	l := &List{}
-	l.Insert(9)
-	l.Insert(8)
-	l.Insert(3)
-	l.Insert(5)
-	l.Insert(3)
-	l.Insert(88)
-	l.Insert(56)
-
-	l.TraverseBackward()
-	l.TraverseFroward()
-
-	input := []int{90, 91, 92, 93, 94}
-	l.ReadFromArray(input)
-
-	output, err := l.ConvertToArray()
-	if err != nil {
-		fmt.Println("error in converting to array")
-	}
-
-	fmt.Println("output:", output)
-
-	found, err := l.Search(2)
-	if err != nil {
-		fmt.Println("error in searching")
-	}
-
-	fmt.Println("search result:", found)
-
-	l.Sort()
-	l.TraverseFroward()
-
 }
 
 // Insert takes a value and insert into the list
@@ -144,7 +111,7 @@ func (l *List) Search(key int) (bool, error) {
 
 // establish a circluar connection between nodes in list
 // use with caution because if you make the list into circular
-// the methods will give un-expected results
+// the provided methods will give un-expected results
 func (l *List) MakeLinkedlistIntoCircular() {
 	l.Head.Prev = l.Tail
 	l.Tail.Next = l.Head
