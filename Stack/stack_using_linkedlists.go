@@ -45,6 +45,7 @@ func (s *Stack) Pop(data int) (int, error) {
 	}
 	popped := s.Head.Data
 	s.Head = s.Head.Next
+	s.Length--
 	return popped, nil
 }
 
