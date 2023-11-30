@@ -42,7 +42,6 @@ func (s *stack) push(value int) {
 		return
 	}
 	s.array = append(s.array, value)
-	s.Size++
 	fmt.Println("added:", value)
 }
 

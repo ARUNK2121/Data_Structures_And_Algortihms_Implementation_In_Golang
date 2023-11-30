@@ -143,6 +143,8 @@ func (l *List) Search(key int) (bool, error) {
 }
 
 // establish a circluar connection between nodes in list
+// use with caution because if you make the list into circular
+// the methods will give un-expected results
 func (l *List) MakeLinkedlistIntoCircular() {
 	l.Head.Prev = l.Tail
 	l.Tail.Next = l.Head
