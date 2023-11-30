@@ -1,28 +1,9 @@
-package main
+package stack
 
 import (
 	"errors"
 	"fmt"
 )
-
-func main() {
-	s := NewStack(10)
-
-	s.push(1)
-	s.push(2)
-	s.push(3)
-	s.push(4)
-	s.push(5)
-
-	popped, err := s.pop()
-	if err != nil {
-		fmt.Println("error:", err.Error())
-	}
-	fmt.Println("popped:", popped)
-	s.pop()
-
-	s.peek()
-}
 
 type stack struct {
 	array []int
@@ -36,7 +17,7 @@ func NewStack(stacksize int) *stack {
 	}
 }
 
-func (s *stack) push(value int) {
+func (s *stack) Peekush(value int) {
 	if s.Size == len(s.array) {
 		fmt.Println("stack overflow")
 		return
@@ -45,7 +26,7 @@ func (s *stack) push(value int) {
 	fmt.Println("added:", value)
 }
 
-func (s *stack) pop() (int, error) {
+func (s *stack) Pop() (int, error) {
 	if len(s.array) == 0 {
 		return 0, errors.New("stack underflow")
 	}
@@ -55,7 +36,7 @@ func (s *stack) pop() (int, error) {
 	return picked, nil
 }
 
-func (s *stack) peek() {
+func (s *stack) Peek() {
 	if len(s.array) == 0 {
 		fmt.Println("stack is empty")
 	}

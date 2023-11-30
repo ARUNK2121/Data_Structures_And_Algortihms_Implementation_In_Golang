@@ -1,4 +1,4 @@
-package main
+package stack
 
 import (
 	"errors"
@@ -39,7 +39,7 @@ func (s *Stack) Push(data int) {
 	s.Length++
 }
 
-func (s *Stack) Pop(data int) (int, error) {
+func (s *Stack) Pop() (int, error) {
 	if s.Length == 0 {
 		return 0, errors.New("stack underflow")
 	}
@@ -49,6 +49,6 @@ func (s *Stack) Pop(data int) (int, error) {
 	return popped, nil
 }
 
-func (s *Stack) Peek(data int) {
+func (s *Stack) Peek() {
 	fmt.Println("the value popped to be next:", s.Head.Data)
 }
