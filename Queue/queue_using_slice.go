@@ -1,42 +1,16 @@
-package main
+package queue
 
 import (
 	"errors"
 	"fmt"
 )
 
-func main() {
-
-	q := queue{}
-	fmt.Println(q)
-
-	q.Enqueue(10)
-	q.Enqueue(20)
-	q.Enqueue(30)
-	q.Enqueue(40)
-	q.Enqueue(50)
-
-	fmt.Println(q)
-
-	a, err := q.DeQueue()
-	if err != nil {
-		fmt.Println(err.Error())
-	}
-	b, err := q.DeQueue()
-	if err != nil {
-		fmt.Println(err.Error())
-	}
-
-	fmt.Println(a)
-	fmt.Println(b)
-}
-
 type queue struct {
 	items []int
 	Size  int
 }
 
-func NewQueue(size int) *queue {
+func NewQueueUsingSlice(size int) *queue {
 	return &queue{
 		items: []int{},
 		Size:  size,
@@ -61,4 +35,8 @@ func (q *queue) DeQueue() (int, error) {
 	q.items = q.items[1:]
 
 	return toRemove, nil
+}
+
+func (q *queue) Peek() {
+	fmt.Println("the next value to be removed:", q.items[0])
 }
